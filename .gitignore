@@ -1,0 +1,5 @@
+Debug/
+Release/
+TestResults/
+*.suo
+Generated.*.cs

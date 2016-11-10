@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ILMergeExecutable>$(MoreRootPath)\Build\ILMerge.exe</ILMergeExecutable>
+
+    <OutputExtension Condition=" '$(AssemblyTarget)' == 'Exe' ">.exe</OutputExtension>
+    <OutputExtension Condition=" '$(AssemblyTarget)' == 'Library' ">.dll</OutputExtension>
+
+    <OutputDir>$(MSBuildProjectDirectory)\$(OutputPath)</OutputDir>
+    <OutputFile>$(OutputDir)$(AssemblyName)$(OutputExtension)</OutputFile>
+
+    <ILMergeKeyFileArgument></ILMergeKeyFileArgument>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(SignAssembly)' == 'true' ">
+    <ILMergeKeyFileArgument>/keyfile:$(MoreRootPath)\KeyFile.snk</ILMergeKeyFileArgument>
+  </PropertyGroup>
+  <Target Name="Rebuild" DependsOnTargets="Clean;Build">
+  </Target>
+  <Target Name="Build" Inputs="@(ProjectReference -> '%(RootDir)%(Directory)$(OutputPath)%(Filename).dll')" Outputs="$(OutputFile)">
+    <!-- Check AssemblyTarget -->
+    <Error Condition=" '$(AssemblyTarget)' == '' " Text="Missing 'AssemblyTarget'. Expected 'Exe' or 'Library'" />
+    <Error Condition=" '$(OutputExtension)' == '' " Text="Unknown 'AssemblyTarget'. Expected 'Exe' or 'Library'" />
+
+    <!-- Check OutputPath -->
+    <Error Condition=" '$(OutputPath)' == '' " Text="Missing OutputPath" />
+
+    <Message Text="Performing ILMerge for $(OutputFile)"/>
+    <Exec Condition="!Exists('$(OutputDir)')" Command="mkdir &quot;$(OutputDir)&quot;" />
+    <Exec Command="$(ILMergeExecutable) /target:$(AssemblyTarget) $(ILMergeKeyFileArgument) /out:$(OutputFile) $(ExtraArguments) @(ProjectReference -> '&quot;%(RootDir)%(Directory)$(OutputPath)%(Filename).dll&quot;',' ')"/>
+  </Target>
+  <Target Name="Clean">
+    <Message Text="Cleaning ILMerge '$(OutputFile)'"/>
+    <Delete Files="$(OutputFile)"/>
+  </Target>
+</Project>

@@ -1,0 +1,118 @@
+﻿<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MoreRootPath>$(MSBuildProjectDirectory)\..</MoreRootPath>
+    <ProductVersion>9.0.30729</ProductVersion>
+  </PropertyGroup>
+  <Import Project="$(MoreRootPath)\Build\CSharpProject.include" />
+  <PropertyGroup>
+    <ProjectGuid>{8A66267F-EA94-4EDC-99DE-53C7613902D2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>More</RootNamespace>
+    <AssemblyName>More.Test</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AnsiTests.cs" />
+    <Compile Include="AsciiLineParserTest.cs" />
+    <Compile Include="Asn1Tests.cs" />
+    <Compile Include="BetterBitArrayTest.cs" />
+    <Compile Include="BufferedFileWriterTests.cs" />
+    <Compile Include="BufferTests.cs" />
+    <Compile Include="BuildersTest.cs" />
+    <Compile Include="CollectionTests.cs" />
+    <Compile Include="DataWriterTests.cs" />
+    <Compile Include="EncodingTest.cs" />
+    <Compile Include="EnumeratorTests.cs" />
+    <Compile Include="HttpTests.cs" />
+    <Compile Include="JsonTest.cs" />
+    <Compile Include="Oddities.cs" />
+    <Compile Include="OrderedSetTests.cs" />
+    <Compile Include="PriorityQueryTests.cs" />
+    <Compile Include="RollingLogTest.cs" />
+    <Compile Include="SelectServerTests.cs" />
+    <Compile Include="SinkTests.cs" />
+    <Compile Include="SnmpTest.cs" />
+    <Compile Include="SortedSetTests.cs" />
+    <Compile Include="SymExpTest.cs" />
+    <Compile Include="TestByteArraySerialization.cs" />
+    <Compile Include="CommandLineParserTest.cs" />
+    <Compile Include="ExtensionTests.cs" />
+    <Compile Include="IniParserTests.cs" />
+    <Compile Include="LfdRegressionTests.cs" />
+    <Compile Include="PerformanceChecks.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortedListTest.cs" />
+    <Compile Include="SosArrays.cs" />
+    <Compile Include="SosBasicTypeTests.cs" />
+    <Compile Include="SosComplexTypeTests.cs" />
+    <Compile Include="SosDeserializeWhiteBoxTests.cs" />
+    <Compile Include="SosMethodDefinitions.cs" />
+    <Compile Include="SosParseTests.cs" />
+    <Compile Include="SosTableTests.cs" />
+    <Compile Include="SosTypeDefinitions.cs" />
+    <Compile Include="SosUtil.cs" />
+    <Compile Include="SosVerification.cs" />
+    <Compile Include="TestPopSocket.cs" />
+    <Compile Include="TestSha1.cs" />
+    <Compile Include="WaitEventTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Shadow Include="Test References\More.Sos.accessor" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ByteString\More.ByteString.csproj">
+      <Project>{E623347B-D9F9-49D1-ABD4-CCF5ED95C576}</Project>
+      <Name>More.ByteString</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Config\More.Config.csproj">
+      <Project>{7A299A33-5FE0-4550-92E8-B09E945C90F2}</Project>
+      <Name>More.Config</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core\More.Core.csproj">
+      <Project>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</Project>
+      <Name>More.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Lfd\More.Lfd.csproj">
+      <Project>{8B7A184F-DD24-4A1F-AE00-98F7EC74C42C}</Project>
+      <Name>More.Lfd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Miscellaneous\More.Miscellaneous.csproj">
+      <Project>{1226B927-2F12-4788-89CC-6CD5E3C33DE8}</Project>
+      <Name>More.Miscellaneous</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Net\Http\More.Net.Http.csproj">
+      <Project>{E9BAA1BA-D797-417F-8C78-74BCBEC55262}</Project>
+      <Name>More.Net.Http</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Net\More.Net.csproj">
+      <Project>{40C821C1-E019-46D1-9365-8AD5F5925ADE}</Project>
+      <Name>More.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Serialization\More.Serialization.csproj">
+      <Project>{88353C67-982B-419E-B7EF-07C832910911}</Project>
+      <Name>More.Serialization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sos\More.Sos.csproj">
+      <Project>{7BEF81B1-4442-451F-B20E-1A9AB0B25A51}</Project>
+      <Name>More.Sos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utf8\Json\More.Utf8.Json.csproj">
+      <Project>{F84CED4A-C8AB-4325-87C0-8587E9D73162}</Project>
+      <Name>More.Utf8.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utf8\More.Utf8.csproj">
+      <Project>{B63942C3-9666-41FD-907A-26B9BABD29EA}</Project>
+      <Name>More.Utf8</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(TargetImportFile)" />
+</Project>

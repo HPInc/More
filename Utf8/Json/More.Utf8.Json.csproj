@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MoreRootPath>$(MSBuildProjectDirectory)\..\..</MoreRootPath>
+  </PropertyGroup>
+  <Import Project="$(MoreRootPath)\Build\CSharpProject.include" />
+  <PropertyGroup>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <ProjectGuid>{F84CED4A-C8AB-4325-87C0-8587E9D73162}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>More.Utf8.Json</RootNamespace>
+    <AssemblyName>More.Utf8.Json</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Template Include="$(MoreRootPath)\CommonTemplates\Json.template">
+      <OutputFile>Generated.JsonByteArray.cs</OutputFile>
+      <Args>(StringType)=Byte[] (StringTypeVarName)=ByteArray (StringTypeSafety)=</Args>
+    </Template>
+    <!--
+    <Template Include="$(MoreRootPath)\CommonTemplates\Json.template">
+      <OutputFile>Generated.JsonBytePtr.cs</OutputFile>
+      <Args>(StringType)=Byte* (StringTypeVarName)=BytePtr (StringTypeSafety)=unsafe</Args>
+    </Template>
+    -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Json.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ByteString\More.ByteString.csproj">
+      <Project>{E623347B-D9F9-49D1-ABD4-CCF5ED95C576}</Project>
+      <Name>More.ByteString</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\More.Core.csproj">
+      <Project>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</Project>
+      <Name>More.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\More.Utf8.csproj">
+      <Project>{B63942C3-9666-41FD-907A-26B9BABD29EA}</Project>
+      <Name>More.Utf8</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(TargetImportFile)" />
+  <Import Project="$(MoreRootPath)\Build\Templates.include" />
+</Project>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MoreRootPath>$(MSBuildProjectDirectory)\..</MoreRootPath>
+  </PropertyGroup>
+  <Import Project="$(MoreRootPath)\Build\CSharpProject.include" />
+  <PropertyGroup>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <ProjectGuid>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>More</RootNamespace>
+    <AssemblyName>More.Core</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buf.cs" />
+    <Compile Include="CoreExtensions.cs" />
+    <Compile Include="EncodingEx.cs" />
+    <Compile Include="LineParser.cs" />
+    <Compile Include="BufferedFileWriter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PriorityLogic.cs" />
+    <Compile Include="Slice.cs" />
+    <Compile Include="Writers.cs" />
+  </ItemGroup>
+  <Import Project="$(TargetImportFile)" />
+</Project>
