@@ -114,32 +114,37 @@ namespace More
         }
 
         /// <summary>
+        /// Adds a new wait time and action.
+        /// </summary>
+        /// <param name="newWaitTimeAndAction">The new wait time and action to add</param>
+        public void Add(WaitTimeAndAction newWaitTimeAndAction)
+        {
+            if (!newWaitTimeAndAction.HasAction())
+            {
+                throw new InvalidOperationException("Cannot add this wait time action because it has no action");
+            }
+            waitActions.Add(newWaitTimeAndAction);
+        }
+        /// <summary>
         /// Adds a new wait time and action, if the new time is sooner than any previous times it returns true.
         /// This can be used to signal to another thread that it needs to reset it's timer till the next event.
         /// </summary>
         /// <param name="newWaitTimeAndAction">The new wait time and action to add</param>
-        public Boolean Add(WaitTimeAndAction newWaitTimeAndAction)
+        public Boolean AddAndReturnTrueIfNewer(WaitTimeAndAction newWaitTimeAndAction)
         {
-            if (!newWaitTimeAndAction.HasAction()) throw new InvalidOperationException("Cannot add this wait time action because it has no action");
-
-            if (waitActions.count <= 0)
+            if (!newWaitTimeAndAction.HasAction())
             {
-                waitActions.Add(newWaitTimeAndAction);
-                return true;
+                throw new InvalidOperationException("Cannot add this wait time action because it has no action");
             }
-
-            //
-            // Check if this new event happens sooner than the next event
-            //
-            Int64 now = Stopwatch.GetTimestamp();
-            Int32 nextEventMillisFromNow = waitActions.elements[waitActions.count - 1].MillisFromNow(now);
-            Int32 newEventMillisFromNow = newWaitTimeAndAction.MillisFromNow(now);
-
+            Boolean isNewer = true;
+            if (waitActions.count > 0)
+            {
+                isNewer = WaitTimeAndAction.DecreasingComparison(
+                    newWaitTimeAndAction, waitActions.elements[waitActions.count - 1]) > 0;
+            }
             waitActions.Add(newWaitTimeAndAction);
-
-            return newEventMillisFromNow < nextEventMillisFromNow;
+            return isNewer;
         }
-
 
         public UInt32 WaitActionTimes(ArrayReference<Int32> times, Int64 now)
         {
@@ -155,8 +160,6 @@ namespace More
 
             return count;
         }
-
-
 
         /// <summary>
         /// Handle wait actions

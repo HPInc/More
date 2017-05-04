@@ -115,9 +115,9 @@ namespace More
         }
         public void Insert(int index, T item)
         {
-            throw new InvalidOperationException("Cannot insert an element at a specific index on a SortedList");
+            throw new InvalidOperationException("You cannot call Insert on a sorted list, call Add");
         }
-        public void Add(T newElement)
+        private void InsertPreSorted(UInt32 index, T item)
         {
             if (count >= elements.Length)
             {
@@ -125,24 +125,39 @@ namespace More
                 Array.Copy(elements, newElements, elements.Length);
                 elements = newElements;
             }
-
-            UInt32 position;
-            for (position = 0; position < count; position++)
+            // Shift elements after 'index' to the right by 1
+            for (UInt32 dstIndex = count;  dstIndex > index; dstIndex--)
             {
-                T element = elements[position];
-                if (comparison(newElement, element) <= 0)
+                elements[dstIndex] = elements[dstIndex - 1];
+            }
+            elements[index] = item;
+            count++;
+        }
+        public void Add(T newElement)
+        {
+            UInt32 index = 0;
+            for (; index < count; index++)
+            {
+                if (comparison(newElement, elements[index]) <= 0)
                 {
-                    // Move remaining elements
-                    for (UInt32 copyPosition = count; copyPosition > position; copyPosition--)
-                    {
-                        elements[copyPosition] = elements[copyPosition - 1];
-                    }
                     break;
                 }
             }
-
-            elements[position] = newElement;
-            count++;
+            InsertPreSorted(index, newElement);
+        }
+        public void AddFromEnd(T newElement)
+        {
+            UInt32 index = count;
+            while(index > 0)
+            {
+                index--;
+                if (comparison(newElement, elements[index]) >= 0)
+                {
+                    index++;
+                    break;
+                }
+            }
+            InsertPreSorted(index, newElement);
         }
 
         public void Clear()

@@ -26,8 +26,6 @@ namespace More
         SortedListExtensions<Int32> int32Printer = new SortedListExtensions<int>();
         SortedListExtensions<String> stringPrinter = new SortedListExtensions<String>();
 
-
-
         private void AssertIncreasing(SortedList<Int32> list)
         {
             for (int i = 0; i < list.count - 1; i++)
@@ -47,7 +45,6 @@ namespace More
         public void TestIncreasingSortedList()
         {
             Random generator = new Random();
-
 
 
             SortedList<Int32> increasingList = new SortedList<Int32>(0, 1, CommonComparisons.IncreasingInt32);
@@ -222,17 +219,122 @@ namespace More
             list.Add("e");
             AssertList(new String[] { "d", "e" }, list);
         }
-        void AssertList(String[] expected, SortedList<String> actual)
+        void AssertList<T>(T[] expected, SortedList<T> actual)
         {
             Assert.AreEqual((UInt32)expected.Length, actual.count);
             for (int i = 0; i < expected.Length; i++)
             {
                 Assert.AreEqual(expected[i], actual.elements[i], String.Format("at index {0}", i));
             }
-            for (UInt32 i = actual.count; i < actual.elements.Length; i++)
+        }
+
+        struct NamedInteger
+        {
+            public int value;
+            public string name;
+            public NamedInteger(int value, string name)
             {
-                Assert.IsNull(actual.elements[i]);
+                this.value = value;
+                this.name = name;
             }
+        }
+        static Int32 IncreasingNamedInteger(NamedInteger left, NamedInteger right)
+        {
+            return (left.value > right.value) ? 1 : ((left.value < right.value) ? -1 : 0);
+        }
+
+        [TestMethod]
+        public void TestAddFromStartAndEnd()
+        {
+            SortedList<NamedInteger> list = new SortedList<NamedInteger>(100, 100, IncreasingNamedInteger);
+
+            list.Add(new NamedInteger(1, "original"));
+            list.Add(new NamedInteger(2, "original"));
+            list.Add(new NamedInteger(3, "original"));
+            list.Add(new NamedInteger(4, "original"));
+
+            AssertList(new NamedInteger[] {
+                new NamedInteger(1, "original"),
+                new NamedInteger(2, "original"),
+                new NamedInteger(3, "original"),
+                new NamedInteger(4, "original"),
+            }, list);
+
+            list.Add(new NamedInteger(3, "addedFromStart"));
+
+            AssertList(new NamedInteger[] {
+                new NamedInteger(1, "original"),
+                new NamedInteger(2, "original"),
+                new NamedInteger(3, "addedFromStart"),
+                new NamedInteger(3, "original"),
+                new NamedInteger(4, "original"),
+            }, list);
+
+            list.AddFromEnd(new NamedInteger(3, "addedFromEnd"));
+
+            AssertList(new NamedInteger[] {
+                new NamedInteger(1, "original"),
+                new NamedInteger(2, "original"),
+                new NamedInteger(3, "addedFromStart"),
+                new NamedInteger(3, "original"),
+                new NamedInteger(3, "addedFromEnd"),
+                new NamedInteger(4, "original"),
+            }, list);
+
+            list.AddFromEnd(new NamedInteger(4, "addedFromEnd"));
+
+            AssertList(new NamedInteger[] {
+                new NamedInteger(1, "original"),
+                new NamedInteger(2, "original"),
+                new NamedInteger(3, "addedFromStart"),
+                new NamedInteger(3, "original"),
+                new NamedInteger(3, "addedFromEnd"),
+                new NamedInteger(4, "original"),
+                new NamedInteger(4, "addedFromEnd"),
+            }, list);
+
+            list.AddFromEnd(new NamedInteger(1, "addedFromEnd"));
+
+            AssertList(new NamedInteger[] {
+                new NamedInteger(1, "original"),
+                new NamedInteger(1, "addedFromEnd"),
+                new NamedInteger(2, "original"),
+                new NamedInteger(3, "addedFromStart"),
+                new NamedInteger(3, "original"),
+                new NamedInteger(3, "addedFromEnd"),
+                new NamedInteger(4, "original"),
+                new NamedInteger(4, "addedFromEnd"),
+            }, list);
+
+            list.Add(new NamedInteger(1, "addedFromStart"));
+
+            AssertList(new NamedInteger[] {
+                new NamedInteger(1, "addedFromStart"),
+                new NamedInteger(1, "original"),
+                new NamedInteger(1, "addedFromEnd"),
+                new NamedInteger(2, "original"),
+                new NamedInteger(3, "addedFromStart"),
+                new NamedInteger(3, "original"),
+                new NamedInteger(3, "addedFromEnd"),
+                new NamedInteger(4, "original"),
+                new NamedInteger(4, "addedFromEnd"),
+            }, list);
+
+            list.Add(new NamedInteger(4, "addedFromStart"));
+
+            AssertList(new NamedInteger[] {
+                new NamedInteger(1, "addedFromStart"),
+                new NamedInteger(1, "original"),
+                new NamedInteger(1, "addedFromEnd"),
+                new NamedInteger(2, "original"),
+                new NamedInteger(3, "addedFromStart"),
+                new NamedInteger(3, "original"),
+                new NamedInteger(3, "addedFromEnd"),
+                new NamedInteger(4, "addedFromStart"),
+                new NamedInteger(4, "original"),
+                new NamedInteger(4, "addedFromEnd"),
+            }, list);
+
         }
     }
 }

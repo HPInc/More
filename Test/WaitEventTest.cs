@@ -46,13 +46,13 @@ namespace More
 
             Int64 startTime = Stopwatch.GetTimestamp();
 
-            Assert.IsTrue (waitActions.Add(new WaitTimeAndAction(startTime,   700, waitActionVerifiers[4].HandleEvent)));
-            Assert.IsTrue (waitActions.Add(new WaitTimeAndAction(startTime,   600, waitActionVerifiers[3].HandleEvent)));
-            Assert.IsFalse(waitActions.Add(new WaitTimeAndAction(startTime,   800, waitActionVerifiers[5].HandleEvent)));
-            Assert.IsTrue (waitActions.Add(new WaitTimeAndAction(startTime,     0, waitActionVerifiers[2].HandleEvent)));
-            Assert.IsFalse(waitActions.Add(new WaitTimeAndAction(startTime,   900, waitActionVerifiers[6].HandleEvent)));
-            Assert.IsTrue (waitActions.Add(new WaitTimeAndAction(startTime,  -100, waitActionVerifiers[1].HandleEvent)));
-            Assert.IsTrue (waitActions.Add(new WaitTimeAndAction(startTime,  -200, waitActionVerifiers[0].HandleEvent)));
+            Assert.IsTrue (waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime,   700, waitActionVerifiers[4].HandleEvent)));
+            Assert.IsTrue (waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime,   600, waitActionVerifiers[3].HandleEvent)));
+            Assert.IsFalse(waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime, 800, waitActionVerifiers[5].HandleEvent)));
+            Assert.IsTrue (waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime,     0, waitActionVerifiers[2].HandleEvent)));
+            Assert.IsFalse(waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime, 900, waitActionVerifiers[6].HandleEvent)));
+            Assert.IsTrue (waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime,  -100, waitActionVerifiers[1].HandleEvent)));
+            Assert.IsTrue (waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime,  -200, waitActionVerifiers[0].HandleEvent)));
 
             // Handle the first 2 actions which should have happened in the past
             waitActionVerifiers[0].expectedToHandle = true;
@@ -79,10 +79,10 @@ namespace More
             Int64 startTime = Stopwatch.GetTimestamp();
             Int32 timeOffset = 1000000;
 
-            Assert.IsTrue(waitActions.Add(new WaitTimeAndAction(startTime + timeOffset, (WaitTimeAndAction a) =>
+            Assert.IsTrue(waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime + timeOffset, (WaitTimeAndAction a) =>
                 { Assert.Fail("This action should not be called in this test"); })));
-        
-            Assert.IsTrue(waitActions.Add(new WaitTimeAndAction(startTime - timeOffset, (WaitTimeAndAction a) => { Console.WriteLine("Successfully executed the correct action"); })));
+
+            Assert.IsTrue(waitActions.AddAndReturnTrueIfNewer(new WaitTimeAndAction(startTime - timeOffset, (WaitTimeAndAction a) => { Console.WriteLine("Successfully executed the correct action"); })));
         }
     }
 }
