@@ -11,6 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>More.Net</RootNamespace>
     <AssemblyName>More.Net</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -30,6 +31,10 @@
     <ProjectReference Include="..\Core\More.Core.csproj">
       <Project>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</Project>
       <Name>More.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ByteString\More.ByteString.csproj">
+      <Project>{E623347B-D9F9-49D1-ABD4-CCF5ED95C576}</Project>
+      <Name>More.ByteString</Name>
     </ProjectReference>
     <ProjectReference Include="Dns\More.Net.Dns.csproj">
       <Project>{B8EE685A-137B-47B1-A972-BFB09AA2D486}</Project>

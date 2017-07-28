@@ -156,7 +156,7 @@ namespace More
         // Returns the offset after encoding the character
         // Note: it is assumed that the caller will have already calculated the encoded length, for
         //       that reason, this method does not return the offset after the encoding
-        public static void Encode(String str, Byte[] buffer, UInt32 offset)
+        public static UInt32 Encode(String str, Byte[] buffer, UInt32 offset)
         {
             for (int i = 0; i < str.Length; i++)
             {
@@ -177,6 +177,39 @@ namespace More
                     buffer[offset++] = (Byte)(0x80 | ( c       & 0x3F)); // 10xxxxxx
                 }
             }
+            return offset;
+        }
+        // Returns the offset after encoding the character
+        // Note: it is assumed that the caller will have already calculated the encoded length, for
+        //       that reason, this method does not return the offset after the encoding
+        public static unsafe Byte* EncodeUnsafe(String str, Byte* buffer)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                var c = str[i];
+                if (c <= 0x007F)
+                {
+                    *buffer = (Byte)c;
+                    buffer++;
+                }
+                else if (c <= 0x07FF)
+                {
+                    *buffer = (Byte)(0xC0 | ((c >> 6))); // 110xxxxx
+                    buffer++;
+                    *buffer = (Byte)(0x80 | (c & 0x3F)); // 10xxxxxx
+                    buffer++;
+                }
+                else
+                {
+                    *buffer = (Byte)(0xE0 | ((c >> 12))); // 1110xxxx
+                    buffer++;
+                    *buffer = (Byte)(0x80 | ((c >> 6) & 0x3F)); // 10xxxxxx
+                    buffer++;
+                    *buffer = (Byte)(0x80 | (c & 0x3F)); // 10xxxxxx
+                    buffer++;
+                }
+            }
+            return buffer;
         }
         // TODO: implement this correctly later
         public static Boolean IsUpper(UInt32 c)

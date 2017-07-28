@@ -55,13 +55,25 @@ namespace More
         // Returns the offset after encoding the character
         // Note: it is assumed that the caller will have already calculated the encoded length, for
         //       that reason, this method does not return the offset after the encoding
-        public static void Encode(String str, Byte[] buffer, UInt32 offset)
+        public static UInt32 Encode(String str, Byte[] buffer, UInt32 offset)
         {
             for (int i = 0; i < str.Length; i++)
             {
-                var c = str[i];
-                buffer[offset++] = (Byte)c;
+                buffer[offset++] = (Byte)str[i];
             }
+            return offset;
+        }
+        // Returns the offset after encoding the character
+        // Note: it is assumed that the caller will have already calculated the encoded length, for
+        //       that reason, this method does not return the offset after the encoding
+        public static unsafe Byte* EncodeUnsafe(String str, Byte* buffer)
+        {
+            for (int i = 0; i < str.Length; i++)
+            {
+                *buffer = (Byte)str[i];
+                buffer++;
+            }
+            return buffer;
         }
     }
     public static class ByteString
@@ -234,6 +246,54 @@ namespace More
                 throw new OverflowException(String.Format("Overflow while parsing '{0}' as a Int32",
                     System.Text.Encoding.ASCII.GetString(array, (int)offset, (newOffset == 0) ? (int)array.ConsumeNum(offset, limit) : (int)newOffset)));
             return newOffset;
+        }
+    }
+    public struct AsciiPartsBuilder
+    {
+        readonly String[] parts;
+        readonly String[] inbetweens;
+        public AsciiPartsBuilder(String[] parts, params String[] inbetweens)
+        {
+            if (inbetweens.Length + 1 != parts.Length)
+            {
+                throw new ArgumentException(String.Format(
+                    "parts.Length ({0}) must be equal to inbetweens.Length + 1 ({1})",
+                    parts.Length, inbetweens.Length + 1));
+            }
+            this.parts = parts;
+            this.inbetweens = inbetweens;
+        }
+        public UInt32 PrecalculateLength()
+        {
+            UInt32 totalSize = 0;
+            for (Int32 i = 0; i < parts.Length; i++)
+            {
+                totalSize += (UInt32)parts[i].Length;
+            }
+            for (Int32 i = 0; i < inbetweens.Length; i++)
+            {
+                totalSize += (UInt32)inbetweens[i].Length;
+            }
+            return totalSize;
+        }
+        public unsafe void BuildInto(Byte[] dst)
+        {
+            UInt32 offset = 0;
+            for (Int32 i = 0; i < parts.Length - 1; i++)
+            {
+                offset = Ascii.Encode(parts[i], dst, offset);
+                offset = Ascii.Encode(inbetweens[i], dst, offset);
+            }
+            Ascii.Encode(parts[parts.Length - 1], dst, offset);
+        }
+        public unsafe void BuildInto(Byte* dst)
+        {
+            for (Int32 i = 0; i < parts.Length - 1; i++)
+            {
+                dst = Ascii.EncodeUnsafe(parts[i], dst);
+                dst = Ascii.EncodeUnsafe(inbetweens[i], dst);
+            }
+            Ascii.EncodeUnsafe(parts[parts.Length - 1], dst);
         }
     }
 }

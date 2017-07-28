@@ -54,6 +54,30 @@ namespace More
             try { return socket.RemoteEndPoint.ToString(); }
             catch (Exception) { return "<disconnected>";  }
         }
+        public static void SendFullSize(this Socket socket, Byte[] buffer)
+        {
+            SendFullSize(socket, buffer, 0, buffer.Length);
+        }
+        public static void SendFullSize(this Socket socket, Byte[] buffer, Int32 offset, Int32 size)
+        {
+            if (size > 0)
+            {
+                while(true)
+                {
+                    int lastSent = socket.Send(buffer, offset, size, SocketFlags.None);
+                    if (lastSent <= 0)
+                    {
+                        throw new IOException(String.Format("socket Send returned {0}", lastSent));
+                    }
+                    size -= lastSent;
+                    if (size <= 0)
+                    {
+                        return;
+                    }
+                    offset += lastSent;
+                }
+            }
+        }
         public static void ReadFullSize(this Socket socket, Byte[] buffer, Int32 offset, Int32 size)
         {
             int lastBytesRead;
