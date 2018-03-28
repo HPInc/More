@@ -24,5 +24,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextBuilder.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Condition=" '$(PlatformFamilyName)' == 'WindowsCE' " Include="..\Core\More.Core.csproj">
+      <Project>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</Project>
+      <Name>More.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(TargetImportFile)" />
 </Project>

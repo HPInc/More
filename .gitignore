@@ -1,5 +1,5 @@
-Debug/
-Release/
 TestResults/
 *.suo
 Generated.*.cs
+obj/
+bin/

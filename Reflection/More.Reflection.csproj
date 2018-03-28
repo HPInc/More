@@ -5,7 +5,7 @@
   </PropertyGroup>
   <Import Project="$(MoreRootPath)\Build\CSharpProject.include" />
   <PropertyGroup>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <ProjectGuid>{7F839F8F-0BEC-41F8-8ACE-DC2E382FD172}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -28,10 +28,6 @@
     <ProjectReference Include="..\Core\More.Core.csproj">
       <Project>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</Project>
       <Name>More.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Serialization\More.Serialization.csproj">
-      <Project>{88353C67-982B-419E-B7EF-07C832910911}</Project>
-      <Name>More.Serialization</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(TargetImportFile)" />

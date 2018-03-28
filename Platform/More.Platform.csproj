@@ -6,11 +6,11 @@
   <Import Project="$(MoreRootPath)\Build\CSharpProject.include" />
   <PropertyGroup>
     <ProductVersion>9.0.30729</ProductVersion>
-    <ProjectGuid>{7BEF81B1-4442-451F-B20E-1A9AB0B25A51}</ProjectGuid>
+    <ProjectGuid>{5F0F651E-CF45-4e27-8429-5359E9A054E1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>More.Sos</RootNamespace>
-    <AssemblyName>More.Sos</AssemblyName>
+    <RootNamespace>More.Platform</RootNamespace>
+    <AssemblyName>More.Platform</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -20,14 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sos.cs" />
-    <Compile Include="SosTypes.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Core\More.Core.csproj">
-      <Project>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</Project>
-      <Name>More.Core</Name>
-    </ProjectReference>
+    <Compile Include="PlatformPath.cs" />
   </ItemGroup>
   <Import Project="$(TargetImportFile)" />
 </Project>

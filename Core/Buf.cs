@@ -5,6 +5,46 @@ using System.Diagnostics;
 
 namespace More
 {
+    public static class ArrayExt
+    {
+        public static UInt32 CalculateNewSize(UInt32 currentSize, UInt32 neededSize)
+        {
+            if (currentSize == 0)
+                currentSize = neededSize;
+            else
+            {
+                while (currentSize < neededSize)
+                {
+                    currentSize *= 2;
+                }
+            }
+            return currentSize;
+        }
+        public static void EnsureCapacityNoCopy<T>(ref T[] array, UInt32 capacity)
+        {
+            if ((UInt32)array.Length < capacity)
+            {
+                array = new T[CalculateNewSize((UInt32)array.Length, capacity)];
+            }
+        }
+        public static void EnsureCapacityCopySomeData<T>(ref T[] array, UInt32 dataLength, UInt32 capacity)
+        {
+            if (array.Length < capacity)
+            {
+                T[] newArray = new T[CalculateNewSize((UInt32)array.Length, capacity)];
+                System.Array.Copy(array, newArray, dataLength);
+                array = newArray;
+            }
+        }
+        public static void EnsureCapacityCopyAllData<T>(ref T[] array, UInt32 capacity)
+        {
+            if (array.Length < capacity)
+            {
+                Array.Resize<T>(ref array, (Int32)CalculateNewSize((UInt32)array.Length, capacity));
+            }
+        }
+    }
+
     /*
     /// <summary>
     /// This class wraps a Byte array that can be passed to and from functions
@@ -147,29 +187,11 @@ namespace More
         }
         public void EnsureCapacityNoCopy(UInt32 capacity)
         {
-            if ((UInt32)array.Length < capacity)
-            {
-                UInt32 newSize = (UInt32)array.Length * 2;
-                if (newSize < capacity)
-                {
-                    newSize = capacity;
-                }
-                this.array = new Byte[newSize];
-            }
+            ArrayExt.EnsureCapacityNoCopy(ref array, capacity);
         }
-        public void EnsureCapacityCopyData(UInt32 capacity)
+        public void EnsureCapacityCopyAllData(UInt32 capacity)
         {
-            if (array.Length < capacity)
-            {
-                UInt32 newSize = (UInt32)array.Length * 2;
-                if (newSize < capacity)
-                {
-                    newSize = capacity;
-                }
-                Byte[] newArray = new Byte[newSize];
-                System.Array.Copy(array, newArray, array.Length);
-                this.array = newArray;
-            }
+            ArrayExt.EnsureCapacityCopyAllData(ref array, capacity);
         }
     }
     /// <summary>

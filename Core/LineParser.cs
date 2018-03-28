@@ -35,13 +35,13 @@ namespace More
         }
         public void Add(Byte[] data)
         {
-            buffer.EnsureCapacityCopyData(this.dataOffsetLimit + (UInt32)data.Length);
+            buffer.EnsureCapacityCopyAllData(this.dataOffsetLimit + (UInt32)data.Length);
             ArrayCopier.Copy(data, 0, buffer.array, this.dataOffsetLimit, data.Length);
             this.dataOffsetLimit += (UInt32)data.Length;
         }
         public void Add(Byte[] data, UInt32 offset, UInt32 length)
         {
-            buffer.EnsureCapacityCopyData(this.dataOffsetLimit + length);
+            buffer.EnsureCapacityCopyAllData(this.dataOffsetLimit + length);
             ArrayCopier.Copy(data, offset, buffer.array, this.dataOffsetLimit, length);
             this.dataOffsetLimit += length;
         }

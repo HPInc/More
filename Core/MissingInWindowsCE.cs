@@ -1,6 +1,4 @@
-﻿// © Copyright 2016 HP Development Company, L.P.
-// SPDX-License-Identifier: MIT
-#if WindowsCE
+﻿#if WindowsCE
 
 using System;
 using System.Collections;
@@ -190,6 +188,7 @@ namespace System.Net
 }
 namespace System.Net.Sockets
 {
+    /*
     public static class MissingInCESocket
     {
         public static void Connect(this Socket socket, String host, Int32 port)
@@ -198,9 +197,11 @@ namespace System.Net.Sockets
             socket.Connect(new IPEndPoint(ip, port));
         }
     }
+    */
 }
 namespace System.Collections.Generic
 {
+    /*
     public class HashSet<T> : ICollection<T>, IEnumerable<T>, IEnumerable
     {
         Dictionary<T, Boolean> dictionary;
@@ -251,9 +252,11 @@ namespace System.Collections.Generic
             return dictionary.Keys.GetEnumerator();
         }
     }
+    */
 }
 namespace System.Runtime.Serialization
 {
+    /*
     public sealed class FormatterServices
     {
         public static object GetUninitializedObject(Type type)
@@ -261,6 +264,7 @@ namespace System.Runtime.Serialization
             return Activator.CreateInstance(type);
         }
     }
+    */
 }
 namespace System.IO
 {

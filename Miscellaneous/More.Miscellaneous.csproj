@@ -39,10 +39,8 @@
     <Compile Include="BinaryStream.cs" />
     <Compile Include="IniParser.cs" />
     <Compile Include="OrderedSet.cs" />
-    <Compile Include="PlatformPath.cs" />
     <Compile Include="Ports.cs" />
     <Compile Include="ProgramSettings.cs" />
-    <Compile Include="MissingInWindowsCE.cs" />
     <Compile Include="ProcessExecutor.cs" />
     <Compile Include="RollingLog.cs" />
     <Compile Include="MiscellaneousExtensions.cs" />
@@ -54,14 +52,16 @@
     <Compile Include="StringBuilderWriter.cs" />
     <Compile Include="ThreadModel.cs" />
     <Compile Include="ObjectManager.cs" />
-    <Compile Include="SortedList.cs" />
     <Compile Include="Threads.cs" />
     <Compile Include="ThreadWatcher.cs" />
-    <Compile Include="UniqueIndexObjectDictionary.cs" />
     <Compile Include="WaitActions.cs" />
     <Compile Include="WorkerThread.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Collections\More.Collections.csproj">
+      <Project>{A57EDF29-05FA-49EA-B706-18506317FA71}</Project>
+      <Name>More.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Core\More.Core.csproj">
       <Project>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</Project>
       <Name>More.Core</Name>

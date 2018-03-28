@@ -73,6 +73,10 @@
       <Project>{E623347B-D9F9-49D1-ABD4-CCF5ED95C576}</Project>
       <Name>More.ByteString</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Collections\More.Collections.csproj">
+      <Project>{A57EDF29-05FA-49EA-B706-18506317FA71}</Project>
+      <Name>More.Collections</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Config\More.Config.csproj">
       <Project>{7A299A33-5FE0-4550-92E8-B09E945C90F2}</Project>
       <Name>More.Config</Name>
@@ -100,10 +104,6 @@
     <ProjectReference Include="..\Net\More.Net.csproj">
       <Project>{40C821C1-E019-46D1-9365-8AD5F5925ADE}</Project>
       <Name>More.Net</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Serialization\More.Serialization.csproj">
-      <Project>{88353C67-982B-419E-B7EF-07C832910911}</Project>
-      <Name>More.Serialization</Name>
     </ProjectReference>
     <ProjectReference Include="..\Sos\More.Sos.csproj">
       <Project>{7BEF81B1-4442-451F-B20E-1A9AB0B25A51}</Project>

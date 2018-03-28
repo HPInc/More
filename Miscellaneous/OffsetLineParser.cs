@@ -21,7 +21,7 @@ namespace More
         }
         public void Add(Byte[] bytes, Int32 length)
         {
-            buffer.EnsureCapacityCopyData((UInt32)(count + length));
+            buffer.EnsureCapacityCopyAllData((UInt32)(count + length));
             Array.Copy(bytes, 0, buffer.array, count, length);
             count += length;
         }

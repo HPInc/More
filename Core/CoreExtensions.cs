@@ -73,6 +73,21 @@ namespace More
             return (microseconds / OneMillion).ToString("N" + maxDecimalDigits) + " seconds";
         }
     }
+    public static class DateTimeExtensions
+    {
+        public static readonly DateTime UnixZeroTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+
+        /*
+        public static double ToUnixTimeDouble(this DateTime dateTime)
+        {
+            return (double)(dateTime - UnixZeroTime).TotalSeconds;
+        }
+        */
+        public static UInt32 ToUnixTime(this DateTime dateTime)
+        {
+            return (UInt32)(dateTime - UnixZeroTime).TotalSeconds;
+        }
+    }
     public delegate T Parser<T>(String str);
     public static class StringExtensions
     {

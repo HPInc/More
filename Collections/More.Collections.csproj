@@ -5,12 +5,12 @@
   </PropertyGroup>
   <Import Project="$(MoreRootPath)\Build\CSharpProject.include" />
   <PropertyGroup>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <ProjectGuid>{88353C67-982B-419E-B7EF-07C832910911}</ProjectGuid>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <ProjectGuid>{A57EDF29-05FA-49EA-B706-18506317FA71}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>More.Serialization</RootNamespace>
-    <AssemblyName>More.Serialization</AssemblyName>
+    <RootNamespace>More.Collections</RootNamespace>
+    <AssemblyName>More.Collections</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -19,8 +19,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ArrayBuilder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SortedList.cs" />
+    <Compile Include="UniqueIndexObjectDictionary.cs" />
   </ItemGroup>
   <Import Project="$(TargetImportFile)" />
 </Project>
