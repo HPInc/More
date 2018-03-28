@@ -1,0 +1,17 @@
+
+
+
+Enum Byte ExampleByteEnum {
+  Zero 0
+  One 1
+}
+
+Flags Byte ExampleByteFlags {
+  0 Zero
+  1 One
+}
+
+ExampleObject {
+  ExampleByteEnum e
+  ExampleByteFlags f
+}

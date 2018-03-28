@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		More.vsmdi = More.vsmdi
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "More.Digest", "Digest\More.Digest.csproj", "{EDFC3097-A326-47AA-BC79-ED217484BCF2}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = More.vsmdi
@@ -105,6 +107,10 @@ Global
 		{8B7A184F-DD24-4A1F-AE00-98F7EC74C42C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B7A184F-DD24-4A1F-AE00-98F7EC74C42C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B7A184F-DD24-4A1F-AE00-98F7EC74C42C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDFC3097-A326-47AA-BC79-ED217484BCF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDFC3097-A326-47AA-BC79-ED217484BCF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDFC3097-A326-47AA-BC79-ED217484BCF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDFC3097-A326-47AA-BC79-ED217484BCF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -50,7 +50,6 @@
     <Compile Include="Snmp.cs" />
     <Compile Include="StarExpression.cs" />
     <Compile Include="SymExp.cs" />
-    <Compile Include="Sha1.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="StringBuilderWriter.cs" />
     <Compile Include="ThreadModel.cs" />

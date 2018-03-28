@@ -1,0 +1,58 @@
+
+Enum Byte DayOfWeek {
+  Sunday    0
+  Monday    1
+  Tuesday   2
+  Wednesday 3
+  Thursday  4
+  Friday    5
+  Saturday  6
+}
+
+
+AByte {
+  Byte value
+}
+AnSByte {
+  SByte value
+}
+AUInt16 {
+  UInt16 value
+}
+AnInt16 {
+  Int16 value
+}
+AUInt24 {
+  UInt24 value
+}
+
+#
+# White Box Testing for Code Generator
+#
+
+
+
+# Fixed Length Types
+FixedLengthArrayObject {
+  Byte[28] FixedByteArray
+  SByte[52] FixedSByteArray
+  UInt32[5] FixedUInt32Array
+  AnSByte[7] FixedObjectArray
+  DayOfWeek[17] FixedEnumArray
+}
+
+
+# Dynamic Length Types
+DynamicLengthObject {
+  Byte[Byte] AByteArray
+}
+
+AnotherDynamicLengthObject {
+  Byte[Byte] FixedObjectByteLength
+  Byte[24] FixedObject24ByteLength
+  
+  DynamicLengthObject[Byte] DynamicObjectByteLength
+  DynamicLengthObject[32] DynamicObject32ByteLength
+  
+  DynamicLengthObject SingleDynamicLengthObject
+}

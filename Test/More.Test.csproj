@@ -81,6 +81,10 @@
       <Project>{DA7E67C2-CE13-43B3-9F03-F7BFAC405E62}</Project>
       <Name>More.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Digest\More.Digest.csproj">
+      <Project>{EDFC3097-A326-47AA-BC79-ED217484BCF2}</Project>
+      <Name>More.Digest</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Lfd\More.Lfd.csproj">
       <Project>{8B7A184F-DD24-4A1F-AE00-98F7EC74C42C}</Project>
       <Name>More.Lfd</Name>
