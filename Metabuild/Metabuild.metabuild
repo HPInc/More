@@ -1,0 +1,12 @@
+CSharpProject Metabuild
+OutputType Exe
+ProjectGuid 70A654C5-68D9-4D2E-B94B-E845280AC49D
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.Config
+ProjectReference More.Lfd
+# TODO: Add an "ILMerge" Option
+
+Source Properties\AssemblyInfo.cs
+Source Metabuild.cs

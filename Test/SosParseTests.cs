@@ -31,9 +31,9 @@ namespace More
             ParseInvalidFieldNameTest("a");
         }
         void ParseValidFieldNameTest(String expected, String testString)
-        {         
+        {
             String actual;
-            Int32 offset = SosTypes_Accessor.ParseName(testString, 0, '}', out actual);
+            Int32 offset = SosTypes.ParseName(testString, 0, '}', out actual);
 
             Assert.AreEqual(offset, testString.Length - 1);
             Assert.AreEqual(expected, actual);
@@ -43,7 +43,7 @@ namespace More
             String actual;
             try
             {
-                SosTypes_Accessor.ParseName(testString, 0, '}', out actual);
+                SosTypes.ParseName(testString, 0, '}', out actual);
                 Assert.Fail("Expected FormatException");
             }
             catch (FormatException e)
@@ -75,7 +75,7 @@ namespace More
         void ParseValidTypeNameTest(String expected, String testString)
         {
             String actual;
-            Int32 offset = SosTypes_Accessor.ParseTypeName(testString, 0, ':', out actual);
+            Int32 offset = SosTypes.ParseTypeName(testString, 0, ':', out actual);
 
             Assert.AreEqual(offset, testString.Length - 1);
             Assert.AreEqual(expected, actual);
@@ -85,7 +85,7 @@ namespace More
             String actual;
             try
             {
-                SosTypes_Accessor.ParseTypeName(testString, 0, ':', out actual);
+                SosTypes.ParseTypeName(testString, 0, ':', out actual);
                 Assert.Fail("Expected FormatException");
             }
             catch (FormatException e)

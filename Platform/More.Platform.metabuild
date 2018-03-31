@@ -1,0 +1,8 @@
+CSharpProject More.Platform
+OutputType Library
+ProjectGuid 5F0F651E-CF45-4e27-8429-5359E9A054E1
+Reference System
+Reference System.Core
+
+Source Properties\AssemblyInfo.cs
+Source PlatformPath.cs

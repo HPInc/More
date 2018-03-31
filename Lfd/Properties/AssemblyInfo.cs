@@ -15,4 +15,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 //[assembly: Guid("2d611ddc-d61b-496c-8744-ec2e0f79b9ee")]
 [assembly: AssemblyVersion("1.0.0.0")]
+#if !WindowsCE
 [assembly: AssemblyFileVersion("1.0.0.0")]
+#endif

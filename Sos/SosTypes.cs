@@ -627,7 +627,7 @@ namespace More
         }
 
         // returns offset of ',' or '}'
-        static Int32 ParseTypeName(String str, Int32 offset, Char delimiter, out String typeName)
+        public static Int32 ParseTypeName(String str, Int32 offset, Char delimiter, out String typeName)
         {
             if (offset >= str.Length) throw new FormatException("expected type name but reached end of string");
 
@@ -705,7 +705,7 @@ namespace More
         //
         // Returns offset of colon and field name string
         //
-        static Int32 ParseName(String str, Int32 offset, Char endCharacter, out String fieldName)
+        public static Int32 ParseName(String str, Int32 offset, Char endCharacter, out String fieldName)
         {
             if (offset >= str.Length) throw new FormatException("expected name but reached end of string");
 

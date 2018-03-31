@@ -9,6 +9,14 @@ namespace More
 {
     public static class SocketExtensions
     {
+#if WindowsCE
+        public static void Connect(this Socket socket, String host, Int32 port)
+        {
+            var ip = EndPoints.ParseIPOrResolveHost(host, DnsPriority.IPv4ThenIPv6);
+            socket.Connect(new IPEndPoint(ip, port));
+        }
+#endif
+
         public static void Connect(this Socket socket, ref StringEndPoint endpoint, PriorityQuery<IPAddress> dnsPriorityQuery)
         {
             if (endpoint.ipEndPoint == null)

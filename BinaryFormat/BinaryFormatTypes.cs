@@ -124,6 +124,9 @@ namespace More.BinaryFormat
 
         public static BinaryFormatArrayType Parse(LfdLine line, String sizeTypeString)
         {
+#if WindowsCE
+            throw new NotImplementedException();
+#else
             if(String.IsNullOrEmpty(sizeTypeString))
             {
                 return BasedOnCommandLength;
@@ -165,6 +168,7 @@ namespace More.BinaryFormat
             }
 
             throw new InvalidOperationException(String.Format("CodeBug: Unhandled ArraySizeTypeEnum {0}", typeEnum));
+#endif
         }
 
         public readonly ArraySizeTypeEnum type;

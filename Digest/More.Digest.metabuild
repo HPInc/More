@@ -1,0 +1,7 @@
+CSharpProject More.Digest
+OutputType Library
+ProjectGuid EDFC3097-A326-47AA-BC79-ED217484BCF2
+Reference System
+ProjectReference More.Core
+
+Source Sha1.cs

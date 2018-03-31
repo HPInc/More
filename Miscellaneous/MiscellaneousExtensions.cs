@@ -48,6 +48,7 @@ namespace More
                 }
             }
         }
+#if !WindowsCE
         public static Int32 CountDiff(Int32 generation)
         {
             Int32 currentCount = GC.CollectionCount(generation);
@@ -73,6 +74,7 @@ namespace More
                 }
             }
         }
+#endif
     }
 
     public static class ArrayExtensions

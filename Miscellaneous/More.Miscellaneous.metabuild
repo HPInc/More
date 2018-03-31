@@ -1,0 +1,53 @@
+CSharpProject More.Miscellaneous
+OutputType Library
+AllowUnsafeBlocks
+ProjectGuid 1226B927-2F12-4788-89CC-6CD5E3C33DE8
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.Collections
+ProjectReference More.Lfd
+ProjectReference More.Net
+ProjectReference More.Net.Dns
+ProjectReference More.Utf8
+#
+# TODO: Maybe make this conditional
+#
+ProjectReference More.CompactFrameworkBridge
+
+Source Properties\AssemblyInfo.cs
+Source Ansi.cs
+Source ApacheStyleConfig.cs
+Source Asn1.cs
+Source BetterBitArray.cs
+Source Collections.cs
+Source Config.cs
+Source ContextTypeFinder.cs
+Source DataSync.cs
+Source DataWriter.cs
+Source Enumerators.cs
+Source IDataHandler.cs
+Source FixedInterfaces.cs
+Source IRandomGenerator.cs
+Source NativeLayer.cs
+Source OffsetLineParser.cs
+Source BinaryStream.cs
+Source IniParser.cs
+Source OrderedSet.cs
+Source Ports.cs
+Source ProgramSettings.cs
+Source ProcessExecutor.cs
+Source RollingLog.cs
+Source MiscellaneousExtensions.cs
+Source Sink.cs
+Source Snmp.cs
+Source StarExpression.cs
+Source SymExp.cs
+Source StaticData.cs
+Source StringBuilderWriter.cs
+Source ThreadModel.cs
+Source ObjectManager.cs
+Source Threads.cs
+Source ThreadWatcher.cs
+Source WaitActions.cs
+Source WorkerThread.cs

@@ -10,6 +10,22 @@ using System.Text;
 
 namespace More
 {
+    public class JsonException : FormatException
+    {
+        public JsonException(UInt32 lineNumber, String message)
+            : base(String.Format("Error in Json(line {0}): {1}", lineNumber, message))
+        {
+        }
+        public JsonException(UInt32 lineNumber, String message, Exception innerException)
+            : base(String.Format("Error in Json(line {0}): {1}", lineNumber, message), innerException)
+        {
+        }
+    }
+    public struct NameValueOffsets
+    {
+        public OffsetLength name;
+        public UInt32 valueOffset;
+    }
     public $(StringTypeSafety) delegate UInt32 $(StringTypeVarName)Parser<T>($(StringType) array, UInt32 offset, UInt32 limit, out T value);
     public $(StringTypeSafety) struct Json$(StringTypeVarName)Consumer
     {

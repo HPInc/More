@@ -17,6 +17,14 @@ namespace More
     [TestClass]
     public class PerformanceChecks
     {
+        static void PrintGC(String prefix)
+        {
+#if !WindowsCE
+            Console.WriteLine("{0}: GC({1},{2},{3})", prefix,
+                GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+#endif
+        }
+
         public static Boolean BruteForceContains<T>(T[] array, T value) where T : IComparable<T>
         {
             for (int i = 0; i < array.Length; i++)
@@ -73,7 +81,7 @@ namespace More
                     }
                 }
                 Console.WriteLine("NonSortedContains: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("NonSortedContains: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("NonSortedContains");
 
 
                 before = Stopwatch.GetTimestamp();
@@ -87,7 +95,7 @@ namespace More
                     }
                 }
                 Console.WriteLine("SortedContains: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("SortedContains: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("SortedContains");
             }
         }
         
@@ -127,7 +135,7 @@ namespace More
                     String a = str.JsonEncode();
                 }
                 Console.WriteLine("Fast: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("Fast: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Fast");
 
 
                 before = Stopwatch.GetTimestamp();
@@ -136,7 +144,7 @@ namespace More
                     String a = JsonEncodeSlower(str);
                 }
                 Console.WriteLine("Slow: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("Slow: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Slow");
             }
         }
 
@@ -276,7 +284,7 @@ namespace More
                     c = ReturnMe(c);
                 }
                 Console.WriteLine("Class: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("Class: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Class");
 
 
                 before = Stopwatch.GetTimestamp();
@@ -285,7 +293,7 @@ namespace More
                     s = ReturnMe(s);
                 }
                 Console.WriteLine("Struct: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("Struct: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Struct");
             }
         }
         [TestMethod]
@@ -316,7 +324,7 @@ namespace More
                     c.TestMe();
                 }
                 Console.WriteLine("Class: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("Class: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Class");
 
 
                 before = Stopwatch.GetTimestamp();
@@ -325,7 +333,7 @@ namespace More
                     s.TestMe();
                 }
                 Console.WriteLine("Struct: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("Struct: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Struct");
             }
         }
         [TestMethod]
@@ -357,7 +365,7 @@ namespace More
                     ReadVariables(c);
                 }
                 Console.WriteLine("Class: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("Class: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Class");
 
 
                 before = Stopwatch.GetTimestamp();
@@ -366,7 +374,7 @@ namespace More
                     ReadVariables(s);
                 }
                 Console.WriteLine("Struct: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("Struct: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Struct");
 
 
                 before = Stopwatch.GetTimestamp();
@@ -375,7 +383,7 @@ namespace More
                     ReadVariables(ref s);
                 }
                 Console.WriteLine("RefStruct: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMilliseconds());
-                Console.WriteLine("RefStruct: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("RefStruct");
             }
         }
 
@@ -404,7 +412,7 @@ namespace More
                     haystack.Substring(offset).Equals(needle);
                 }
                 Console.WriteLine("Framework: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMicroseconds());
-                Console.WriteLine("Framework: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Framework");
 
 
                 before = Stopwatch.GetTimestamp();
@@ -413,7 +421,7 @@ namespace More
                     haystack.SubstringEquals(offset, needle);
                 }
                 Console.WriteLine("Custom: " + (Stopwatch.GetTimestamp() - before).StopwatchTicksAsDoubleMicroseconds());
-                Console.WriteLine("Custom: GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+                PrintGC("Custom");
             }
         }
         [TestMethod]
@@ -427,8 +435,7 @@ namespace More
                 Double a = StopwatchExtensions.StopwatchTicksAsDoubleMilliseconds(0);
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("NoCast");
 
 
             before = Stopwatch.GetTimestamp();
@@ -437,8 +444,7 @@ namespace More
                 Double a = (Double)StopwatchExtensions.StopwatchTicksAsInt64Milliseconds(10);
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("WithCast");
         }
 
         [TestMethod]
@@ -452,8 +458,7 @@ namespace More
                 Char.ToUpper('c');
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("ToUpper");
 
 
             before = Stopwatch.GetTimestamp();
@@ -462,8 +467,7 @@ namespace More
                 Char.IsUpper('c');
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("IsUpper");
         }
         /*
         [TestMethod]
@@ -516,8 +520,7 @@ namespace More
                 Array array = builder.Build();
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("ArrayBuilder");
 
 
             before = Stopwatch.GetTimestamp();
@@ -531,8 +534,7 @@ namespace More
                 Array array = builder.Build();
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("GenericArrayBuilder");
         }
         public static void PerformanceTestArrayBuilderObject(Int32 arrayLength)
         {
@@ -549,8 +551,7 @@ namespace More
                 Array array = builder.Build();
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("ArrayBuilder");
 
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < 10000; i++)
@@ -563,8 +564,7 @@ namespace More
                 Array array = builder.Build();
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("GenericArrayBuilder");
         }
 
 
@@ -587,8 +587,7 @@ namespace More
                 //bitArray.Set(0, true);
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("BitArray");
 
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < 10000; i++)
@@ -597,12 +596,8 @@ namespace More
                 //betterBitArray.Assert(0);
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("BetterBitArray");
         }
-
-
-
 
 
         [TestMethod]
@@ -651,8 +646,7 @@ namespace More
                 }
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("variableDictionary");
 
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < iterations; i++)
@@ -663,8 +657,7 @@ namespace More
                 }
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("fixedDictionary");
 
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < iterations; i++)
@@ -675,8 +668,7 @@ namespace More
                 }
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("variableListDictionary");
 
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < iterations; i++)
@@ -687,8 +679,7 @@ namespace More
                 }
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("fixedListDictionary");
             /*
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < iterations; i++)
@@ -732,8 +723,7 @@ namespace More
                 theList.Clear();
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("List");
 
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < 1000000; i++)
@@ -742,8 +732,7 @@ namespace More
                 theInterfaceList.Clear();
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("IList");
 
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < 1000000; i++)
@@ -752,8 +741,7 @@ namespace More
                 theList.Clear();
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("List");
 
             before = Stopwatch.GetTimestamp();
             for (int i = 0; i < 1000000; i++)
@@ -762,8 +750,7 @@ namespace More
                 theInterfaceList.Clear();
             }
             Console.WriteLine((Stopwatch.GetTimestamp() - before).StopwatchTicksAsInt64Milliseconds());
-
-            Console.WriteLine("GC({0},{1},{2})", GC.CollectionCount(0), GC.CollectionCount(1), GC.CollectionCount(2));
+            PrintGC("IList");
         }
 
 

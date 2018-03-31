@@ -360,9 +360,11 @@ namespace More.Net
                     UInt32 contentLength = builder.PrecalculateLength();
                     Byte[] buffer = new Byte[(int)contentLength];
                     builder.BuildInto(buffer);
+                    /*
                     Console.Write("Request\n--------------------------\n");
                     Console.Write(Encoding.ASCII.GetString(buffer));
                     Console.Write("\n--------------------------\n");
+                    */
 
                     socket.SendFullSize(buffer);
 
@@ -373,9 +375,11 @@ namespace More.Net
                         int lastReceived = socket.Receive(buffer);
                         if (lastReceived <= 0)
                         {
+                            /*
                             Console.Write("Response\n--------------------------\n");
                             Console.Write(Encoding.ASCII.GetString(responseBuilder.bytes, 0, (int)responseBuilder.contentLength));
                             Console.Write("\n--------------------------\n");
+                            */
                             throw new InvalidOperationException(String.Format("socket Receive returned {0} (received {1} bytes total)",
                                 lastReceived, responseBuilder.contentLength));
                         }

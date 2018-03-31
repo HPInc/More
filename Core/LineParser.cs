@@ -74,7 +74,7 @@ namespace More
             // Move remaining data to the beginning of the buffer
             //
             if (this.nextStartOfLineOffset <= 0 || this.nextStartOfLineOffset >= this.dataOffsetLimit) return null;
-            
+
             UInt32 copyLength = this.dataOffsetLimit - this.nextStartOfLineOffset;
             ArrayCopier.Copy(buffer.array, this.nextStartOfLineOffset, buffer.array, 0, copyLength);
             this.nextStartOfLineOffset = 0;

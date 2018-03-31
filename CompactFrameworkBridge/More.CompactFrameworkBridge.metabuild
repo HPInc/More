@@ -1,0 +1,9 @@
+CSharpProject More.CompactFrameworkBridge
+OutputType Library
+ProjectGuid 9BC56798-4750-4632-AFED-3C921A34BBFF
+Reference System
+Reference System.Core
+ProjectReference More.Core.Common
+
+Source Properties\AssemblyInfo.cs
+Source MissingInWindowsCE.cs

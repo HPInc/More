@@ -1,0 +1,16 @@
+CSharpProject More.Reflection
+OutputType Library
+ProjectGuid 7F839F8F-0BEC-41F8-8ACE-DC2E382FD172
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.Core.Common
+#
+# TODO: Maybe make this conditional
+#
+ProjectReference More.CompactFrameworkBridge
+
+Source Properties\AssemblyInfo.cs
+Source ArrayReflection.cs
+Source BigEndianReflection.cs
+Source Reflection.cs

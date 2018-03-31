@@ -1,0 +1,15 @@
+CSharpProject More.Sos
+OutputType Library
+ProjectGuid 7BEF81B1-4442-451F-B20E-1A9AB0B25A51
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.Core.Common
+#
+# TODO: Maybe make this conditional
+#
+ProjectReference More.CompactFrameworkBridge
+
+Source Properties\AssemblyInfo.cs
+Source Sos.cs
+Source SosTypes.cs

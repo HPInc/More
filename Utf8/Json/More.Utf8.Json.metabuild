@@ -1,0 +1,31 @@
+CSharpProject More.Utf8.Json
+OutputType Library
+AllowUnsafeBlocks
+ProjectGuid F84CED4A-C8AB-4325-87C0-8587E9D73162
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.ByteString
+ProjectReference More.Utf8
+
+Source Properties\AssemblyInfo.cs
+#
+# TODO: generate code for Json.cs
+#
+Source Json.generated.cs
+
+
+
+#  <ItemGroup>
+#    <Template Include="$(MoreRootPath)\CommonTemplates\Json.template">
+#      <OutputFile>Generated.JsonByteArray.cs</OutputFile>
+#      <Args>(StringType)=Byte[] (StringTypeVarName)=ByteArray (StringTypeSafety)=</Args>
+#    </Template>
+#    <!--
+#    <Template Include="$(MoreRootPath)\CommonTemplates\Json.template">
+#      <OutputFile>Generated.JsonBytePtr.cs</OutputFile>
+#      <Args>(StringType)=Byte* (StringTypeVarName)=BytePtr (StringTypeSafety)=unsafe</Args>
+#    </Template>
+#    -->
+#  </ItemGroup>
+# <Import Project="$(MoreRootPath)\Build\Templates.include" />

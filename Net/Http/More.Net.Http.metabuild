@@ -1,0 +1,14 @@
+CSharpProject More.Net.Http
+OutputType Library
+ProjectGuid E9BAA1BA-D797-417F-8C78-74BCBEC55262
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.ByteString
+ProjectReference More.Utf8
+ProjectReference More.Net
+ProjectReference More.Net.Dns
+
+Source Properties\AssemblyInfo.cs
+Source Http.cs
+Source HttpClient.cs

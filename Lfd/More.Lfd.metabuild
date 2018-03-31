@@ -1,0 +1,9 @@
+CSharpProject More.Lfd
+OutputType Library
+ProjectGuid 8B7A184F-DD24-4A1F-AE00-98F7EC74C42C
+Reference System
+ProjectReference More.Core
+
+Source Properties\AssemblyInfo.cs
+Source Lfd.cs
+Source LfdReader.cs

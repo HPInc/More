@@ -1,0 +1,15 @@
+CSharpProject More.Net.Dns
+OutputType Library
+ProjectGuid B8EE685A-137B-47B1-A972-BFB09AA2D486
+Reference System
+Reference System.Core
+ProjectReference More.Core
+#
+# TODO: Maybe make this conditional
+#
+ProjectReference More.CompactFrameworkBridge
+
+Source Properties\AssemblyInfo.cs
+Source DnsPriority.cs
+Source EndPoints.cs
+Source StringEndPoint.cs

@@ -1,0 +1,20 @@
+CSharpProject More.Net
+OutputType Library
+AllowUnsafeBlocks
+ProjectGuid 40C821C1-E019-46D1-9365-8AD5F5925ADE
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.ByteString
+ProjectReference More.Net.Dns
+#
+# TODO: Maybe make this conditional
+#
+ProjectReference More.CompactFrameworkBridge
+
+Source Properties\AssemblyInfo.cs
+Source NetworkExtensions.cs
+Source InternetHost.cs
+Source SelectServer.cs
+Source Proxies.cs
+Source SocksProxies.cs

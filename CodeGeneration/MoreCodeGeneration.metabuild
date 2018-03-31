@@ -1,0 +1,6 @@
+CSharpProject MoreCodeGeneration
+OutputType Exe
+Reference System
+Reference System.Core
+
+Source MoreCodeGeneration.cs

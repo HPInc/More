@@ -52,7 +52,7 @@ namespace More
             Util.TestDeserialization(builder, WeirdEnum.Has_Underscore, "has_uNDERSCORE");
             Util.TestDeserialization(builder, WeirdEnum.Has_Underscore, "0");
         }
-
+#if !WindowsCE
         [TestMethod]
         public void TestForSomeEnums()
         {
@@ -85,7 +85,7 @@ namespace More
                 }
             }
         }
-
+#endif
         [TestMethod]
         public void TestPrimitiveLimits()
         {

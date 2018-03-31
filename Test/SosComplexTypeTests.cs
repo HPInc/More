@@ -14,10 +14,10 @@ using TestClasses;
 
 namespace More
 {
-
     [TestClass]
     public class UserDefinedTypes
     {
+#if !WindowsCE
         [TestMethod]
         public void TestAllAvailableTypesInLoadedAssemblies()
         {
@@ -69,7 +69,7 @@ namespace More
                 }
             }
         }
-
+#endif
         [TestMethod]
         public void TestSerialization()
         {

@@ -1,5 +1,6 @@
 TestResults/
 *.suo
-Generated.*.cs
+/Generated.*
+*.generated.cs
 obj/
 bin/

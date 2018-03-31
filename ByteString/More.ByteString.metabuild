@@ -1,0 +1,14 @@
+CSharpProject More.ByteString
+OutputType Library
+AllowUnsafeBlocks
+ProjectGuid E623347B-D9F9-49D1-ABD4-CCF5ED95C576
+Reference System
+Reference System.Core
+#
+# TODO: Maybe make this conditional
+#
+ProjectReference More.CompactFrameworkBridge
+
+Source Properties\AssemblyInfo.cs
+Source ByteString.cs
+Source TextBuilder.cs

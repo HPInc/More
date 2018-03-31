@@ -1,0 +1,8 @@
+CSharpProject More.Core.Common
+OutputType Library
+ProjectGuid 23DF1793-7A04-49e3-B555-CE5CA18E231A
+Reference System
+Reference System.Core
+
+Source Properties\AssemblyInfo.cs
+Source ArrayBuilder.cs

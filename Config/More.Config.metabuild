@@ -1,0 +1,13 @@
+CSharpProject More.Config
+OutputType Library
+ProjectGuid 7A299A33-5FE0-4550-92E8-B09E945C90F2
+Reference System
+ProjectReference More.Core
+ProjectReference More.Lfd
+#
+# TODO: Maybe make this conditional
+#
+ProjectReference More.CompactFrameworkBridge
+
+Source Properties\AssemblyInfo.cs
+Source CommandLine.cs

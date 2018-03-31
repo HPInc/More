@@ -1,7 +1,38 @@
 More
 ========================================================
-This repository contains commonly useful C# libraries.  
+This repository contains commonly useful C# libraries.
 
+How to Build
+========================================================
+* Build Metabuild\BootstrapMetabuild.sln
+Open the solution file to build or build from the command line:
+```
+msbuild Metabuild\BootstrapMetabuild.sln
+```
+
+* Generate solution/project files:
+```
+Metabuild\bin\Metabuild.exe generate VisualStudio2008 More.metaproj
+```
+> NOTE: use --wince to generate a build configuration for windows CE
+
+* Build TemplateProcessor
+Open `Generated.VisualStudio2008\More.sln` and build the `TemplateProcessor` project, or just build from the command line:
+```
+msbuild Generated.VisualStudio2008\TemplateProcessor.csproj
+```
+
+* Generate Code
+```
+Generated.VisualStudio2008\bin\Debug\TemplateProcessor.exe CommonTemplates\json.template Utf8\Json\Json.generated.cs (StringType)=Byte[] (StringTypeVarName)=ByteArray (StringTypeSafety)=
+# TODO: at some point we should support Byte* instead of Byte[]
+# Generated.VisualStudio2008\bin\Debug\TemplateProcessor.exe CommonTemplates\json.template Utf8\Json\Json.generated.cs (StringType)=Byte* (StringTypeVarName)=BytePtr (StringTypeSafety)=unsafe
+```
+
+* Open `Generated.VisualStudio2008\More.sln`
+
+Breakdown of Libraries
+========================================================
 ### More.dll
 A merged assembly of all the other assemblies.
 

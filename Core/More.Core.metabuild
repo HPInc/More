@@ -1,0 +1,21 @@
+CSharpProject More.Core
+OutputType Library
+AllowUnsafeBlocks
+ProjectGuid DA7E67C2-CE13-43B3-9F03-F7BFAC405E62
+Reference System
+Reference System.Core
+
+#
+# TODO: Maybe make this conditional
+#
+ProjectReference More.CompactFrameworkBridge
+
+Source Properties\AssemblyInfo.cs
+Source Buf.cs
+Source CoreExtensions.cs
+Source EncodingEx.cs
+Source LineParser.cs
+Source BufferedFileWriter.cs
+Source PriorityLogic.cs
+Source Slice.cs
+Source Writers.cs

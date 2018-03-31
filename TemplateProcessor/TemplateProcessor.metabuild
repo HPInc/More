@@ -1,0 +1,8 @@
+CSharpProject TemplateProcessor
+OutputType Exe
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.CompactFrameworkBridge
+
+Source TemplateProcessor.cs

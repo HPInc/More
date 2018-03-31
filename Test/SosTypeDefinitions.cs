@@ -145,8 +145,10 @@ namespace More
         {
             Type[] enumTypes = new Type[] {
                 typeof(DayOfWeek),
+#if !WindowsCE
                 typeof(ConsoleColor),
                 typeof(ConsoleKey),
+#endif
                 typeof(TwoEnum),
                 typeof(System.IO.FileAttributes),
             };

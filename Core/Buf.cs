@@ -3,6 +3,12 @@
 using System;
 using System.Diagnostics;
 
+#if WindowsCE
+using ArrayCopier = System.MissingInCEArrayCopier;
+#else
+using ArrayCopier = System.Array;
+#endif
+
 namespace More
 {
     public static class ArrayExt
@@ -32,7 +38,7 @@ namespace More
             if (array.Length < capacity)
             {
                 T[] newArray = new T[CalculateNewSize((UInt32)array.Length, capacity)];
-                System.Array.Copy(array, newArray, dataLength);
+                ArrayCopier.Copy(array, newArray, dataLength);
                 array = newArray;
             }
         }

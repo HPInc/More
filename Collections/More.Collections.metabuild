@@ -1,0 +1,9 @@
+CSharpProject More.Collections
+OutputType Library
+ProjectGuid A57EDF29-05FA-49EA-B706-18506317FA71
+Reference System
+Reference System.Core
+
+Source Properties\AssemblyInfo.cs
+Source SortedList.cs
+Source UniqueIndexObjectDictionary.cs

@@ -1,0 +1,14 @@
+CSharpProject More.Utf8
+OutputType Library
+AllowUnsafeBlocks
+ProjectGuid B63942C3-9666-41FD-907A-26B9BABD29EA
+Reference System
+Reference System.Core
+ProjectReference More.Core
+ProjectReference More.ByteString
+
+Source Properties\AssemblyInfo.cs
+Source Encoding.cs
+Source Unicode.cs
+Source Utf8.cs
+Source Utf8TextBuilder.cs
